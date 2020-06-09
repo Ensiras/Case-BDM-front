@@ -1,0 +1,68 @@
+<h1>Registreer</h1>
+
+<form [formGroup]="registerForm">
+  <ul>
+    <li>
+      <label for="email">E-mail: </label>
+      <input type="text" id="email" formControlName="email">
+      <span *ngIf="registerForm.controls.email.errors?.required">Dit veld is verplicht.</span>
+    </li>
+    <li>
+      <label for="emailCheck">E-mail (herhaal): </label>
+      <input type="text" id="emailCheck" formControlName="emailCheck">
+      <span *ngIf="registerForm.controls.emailCheck.errors?.required">Dit veld is verplicht.</span>
+    </li>
+  </ul>
+
+  <h2>Bezorgwijzen</h2>
+  <p>Alleen verplicht als u artikelen wilt verkopen.</p>
+
+  <ul>
+    <li>
+      <label for="bezorgAfhalenThuis">Afhalen thuis</label>
+      <input type="checkbox" id="bezorgAfhalenThuis" formControlName="bezorgAfhalenThuis" (click)="setAdresVerplicht()">
+    </li>
+    <li>
+      <label for="bezorgAfhalenMagazijn">Afhalen magazijn</label>
+      <input type="checkbox" id="bezorgAfhalenMagazijn" formControlName="bezorgAfhalenMagazijn">
+    </li>
+    <li>
+      <label for="bezorgVersturenVooruit">Versturen vooruitbetaald</label>
+      <input type="checkbox" id="bezorgVersturenVooruit" formControlName="bezorgVersturenVooruit">
+    </li>
+    <li>
+      <label for="bezorgVersturenRembours">Versturen rembours</label>
+      <input type="checkbox" id="bezorgVersturenRembours" formControlName="bezorgVersturenRembours">
+    </li>
+  </ul>
+  <h2>Adres</h2>
+  <p *ngIf="!adresVerplicht">Alleen verplicht als u afhalen thuis als bezorgwijze ondersteunt.</p>
+  <ul>
+    <li>
+      <label for="adresStraat">Straat: </label>
+      <input type="text" id="adresStraat" formControlName="adresStraat" [required]="adresVerplicht">
+    </li>
+    <li>
+      <label for="adresHuisnummer">Huisnummer: </label>
+      <input type="text" id="adresHuisnummer" formControlName="adresHuisnummer">
+      <!--      // TODO: make sure that all fields are filled in when one is, that after user empties field adres is optional again -->
+    </li>
+    <li>
+      <label for="adresPostcode">Postcode: </label>
+      <input type="text" id="adresPostcode" formControlName="adresPostcode">
+      <!--      // TODO: make sure that all fields are filled in when one is, that after user empties field adres is optional again -->
+    </li>
+    <li>
+      <label for="adresStad">Stad: </label>
+      <input type="text" id="adresStad" formControlName="adresStad">
+      <!--      // TODO: make sure that all fields are filled in when one is, that after user empties field adres is optional again -->
+    </li>
+    <li>
+      <input type="checkbox" id="akkoordVoorwaarden" formControlName="akkoordVoorwaarden">
+      <label for="akkoordVoorwaarden">Ja, iets met het gelezen hebben van de voorwaarden en ik ben het er mee
+        eens.</label>
+    </li>
+  </ul>
+
+  <button [disabled]="registerForm.invalid" (click)="registreerGebruiker()">Registreer</button>
+</form>
