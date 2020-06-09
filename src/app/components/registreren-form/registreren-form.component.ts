@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {RegistrerenGebruikerService} from '../../services/registreren-gebruiker.service';
+import {Gebruiker} from '../../models/gebruiker';
 
 @Component({
   selector: 'app-registreren-form',
@@ -18,7 +19,7 @@ export class RegistrerenFormComponent implements OnInit {
       bezorgAfhalenMagazijn: new FormControl(),
       bezorgVersturenVooruit: new FormControl(),
       bezorgVersturenRembours: new FormControl(),
-      adresStraat: new FormControl(),
+      straat: new FormControl(),
       adresHuisnummer: new FormControl(),
       adresPostcode: new FormControl(),
       adresStad: new FormControl(),
@@ -26,6 +27,7 @@ export class RegistrerenFormComponent implements OnInit {
     });
 
   adresVerplicht = false;
+  gebruikers: Gebruiker[];
 
   constructor(private registrerenGebruikerService: RegistrerenGebruikerService) {
   }
@@ -40,6 +42,6 @@ export class RegistrerenFormComponent implements OnInit {
 
 
   registreerGebruiker() {
-    this.registrerenGebruikerService.registreerGebruiker(this.registerForm.value);
+    this.gebruikers = this.registrerenGebruikerService.registreerGebruiker(this.registerForm.value);
   }
 }

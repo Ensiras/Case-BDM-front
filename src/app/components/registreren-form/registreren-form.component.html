@@ -39,8 +39,8 @@
   <p *ngIf="!adresVerplicht">Alleen verplicht als u afhalen thuis als bezorgwijze ondersteunt.</p>
   <ul>
     <li>
-      <label for="adresStraat">Straat: </label>
-      <input type="text" id="adresStraat" formControlName="adresStraat" [required]="adresVerplicht">
+      <label for="straat">Straat: </label>
+      <input type="text" id="straat" formControlName="straat" [required]="adresVerplicht">
     </li>
     <li>
       <label for="adresHuisnummer">Huisnummer: </label>
@@ -66,3 +66,13 @@
 
   <button [disabled]="registerForm.invalid" (click)="registreerGebruiker()">Registreer</button>
 </form>
+
+<h1>Bestaande gebruikers: </h1>
+<table>
+  <tr>
+    <th>email:</th>
+  </tr>
+  <tr *ngFor="let gebruiker of gebruikers">
+    <td>{{gebruiker.email}}</td>
+  </tr>
+</table>
