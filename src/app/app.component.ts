@@ -8,6 +8,11 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 })
 export class AppComponent {
   title = 'BDMFront';
+  ingelogd = true;
 
+  // FIXME: methode uitbreiden...
+  inloggen() {
+    this.ingelogd = !this.ingelogd;
+  }
 }
 

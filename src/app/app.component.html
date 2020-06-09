@@ -4,7 +4,16 @@
   <title>BDM Home</title>
 </head>
 <body>
-
+<div id="navBar">
+    <a href="niets" id="navTitle">BDM</a>
+    <nav>
+    <ul id="navList">
+      <li class="navListItem"><a href="niets">Registreren</a></li>
+      <li class="navListItem" (click)="inloggen()"><span>Inloggen</span></li>
+      <li *ngIf="ingelogd" class="navListItem"><a href="niets">Mijn artikelen</a></li>
+    </ul>
+    </nav>
+</div>
 <app-registreren-form></app-registreren-form>
 
 
