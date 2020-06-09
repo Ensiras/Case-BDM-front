@@ -20,9 +20,9 @@ export class RegistrerenFormComponent implements OnInit {
       bezorgVersturenVooruit: new FormControl(),
       bezorgVersturenRembours: new FormControl(),
       straat: new FormControl(),
-      adresHuisnummer: new FormControl(),
-      adresPostcode: new FormControl(),
-      adresStad: new FormControl(),
+      huisnummer: new FormControl(),
+      postcode: new FormControl(),
+      stad: new FormControl(),
       akkoordVoorwaarden: new FormControl('', Validators.required)
     });
 

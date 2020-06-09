@@ -15,35 +15,13 @@ export class RegistrerenGebruikerService {
   constructor(private httpClient: HttpClient) {
   }
 
-  registreerGebruiker(userInput: Gebruiker) {
-    console.log('Registeren gebruiker met email: ' + userInput.email);
-    this.gebruikers.push(userInput);
-    delete userInput.emailCheck;
-    const gebruiker = new Gebruiker();
-    gebruiker.email = userInput.email;
-    gebruiker.straat = userInput.straat;
-    gebruiker.bezorgAfhalenMagazijn = userInput.bezorgAfhalenMagazijn;
-    gebruiker.bezorgAfhalenThuis = userInput.bezorgAfhalenThuis;
-    gebruiker.bezorgVersturenRembours = userInput.bezorgVersturenRembours;
-    gebruiker.bezorgVersturenVooruit = userInput.bezorgVersturenVooruit;
-    gebruiker.huisnummer = userInput.huisnummer;
-    gebruiker.postcode = userInput.postcode;
-    gebruiker.stad = userInput.stad;
-    gebruiker.akkoordVoorwaarden = userInput.akkoordVoorwaarden;
-
-    /*let objectObservable = this.httpClient.get(this.url, {responseType: 'text'});
-    objectObservable.subscribe(msg => console.log(msg));*/
-    const objectObservable = this.httpClient.post(this.url, gebruiker, {responseType: 'json'});
+  registreerGebruiker(gebruiker: Gebruiker) {
+    console.log('Registeren gebruiker met email: ' + gebruiker.email);
+    this.gebruikers.push(gebruiker);
+    delete gebruiker.emailCheck; // TODO: zorgen dat dit niet meer nodig is.
+    // TODO: zorgen dat er daadwerkelijk een Gebruiker opgestuurd wordt, niet alleen de 'waarden van'.
+    const objectObservable = this.httpClient.post<Gebruiker>(this.url, gebruiker, {responseType: 'json'});
     objectObservable.subscribe(gebr => this.gebruikers.push());
     return this.gebruikers;
   }
-
-  /*console.log('GebruikerService: registreergebruiker');
-  for (const key of Object.keys(userInput)) {
-    const propName = userInput[key];
-    console.log(key + ': ' + propName);
-  }
-  const gebruikerObservable = this.httpClient.post<Gebruiker>(this.url, userInput);
-  gebruikerObservable.subscribe();
-}*/
 }
