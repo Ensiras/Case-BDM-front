@@ -8,7 +8,6 @@ div {
 form {
   background: #cce0f1;
   align-content: center;
-
 }
 
 li {
@@ -17,4 +16,9 @@ li {
 
 ul {
   padding: 0;
+}
+
+#voorwaardenTextArea {
+  height: 100px;
+  width: 50%;
 }

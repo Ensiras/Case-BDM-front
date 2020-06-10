@@ -4,6 +4,7 @@ import {RegistrerenGebruikerService} from '../../services/registreren-gebruiker.
 import {Gebruiker} from '../../models/gebruiker';
 import {validateEmail} from '../../validators/email-validator';
 import {validatePostcode} from '../../validators/postcode-validator';
+import {AlgemeneVoorwaardenService} from '../../services/algemene-voorwaarden.service';
 
 @Component({
   selector: 'app-registreren-form',
@@ -20,27 +21,33 @@ export class RegistrerenFormComponent implements OnInit {
       bezorgAfhalenMagazijn: new FormControl(),
       bezorgVersturenVooruit: new FormControl(),
       bezorgVersturenRembours: new FormControl(),
-      straat: new FormControl(),
-      huisnummer: new FormControl(),
-      postcode: new FormControl(),
-      stad: new FormControl(),
+      straat: new FormControl({value: '', disabled: true}),
+      huisnummer: new FormControl({value: '', disabled: true}),
+      postcode: new FormControl({value: '', disabled: true}),
+      stad: new FormControl({value: '', disabled: true}),
       akkoordVoorwaarden: new FormControl('', Validators.required)
     });
 
-  private adresVerplicht = false;
+  adresVerplicht = false;
   gebruikers: Gebruiker[];
+  algemeneVoorwaarden: string;
 
-  constructor(private registrerenGebruikerService: RegistrerenGebruikerService) {
+  constructor(private registrerenGebruikerService: RegistrerenGebruikerService,
+              private algemeneVoorwaardenService: AlgemeneVoorwaardenService) {
   }
 
   ngOnInit(): void {
+    this.algemeneVoorwaarden = this.algemeneVoorwaardenService.getAlgemeneVoorwaarden();
   }
 
   setAdresVerplicht() {
     this.adresVerplicht = !this.adresVerplicht;
     if (this.adresVerplicht) {
+      this.enableAdresControls();
       this.addAdresValidators();
+
     } else {
+      this.disableAdresControls();
       this.removeAdresValidators();
     }
   }
@@ -69,6 +76,22 @@ export class RegistrerenFormComponent implements OnInit {
       const adresControl = this.registerForm.get(key);
       adresControl.clearValidators();
       adresControl.updateValueAndValidity();
+    }
+  }
+
+  private enableAdresControls() {
+    const adresKeys = ['straat', 'huisnummer', 'postcode', 'stad'];
+    for (const key of adresKeys) {
+      const adresControl = this.registerForm.get(key);
+      adresControl.enable();
+    }
+  }
+
+  private disableAdresControls() {
+    const adresKeys = ['straat', 'huisnummer', 'postcode', 'stad'];
+    for (const key of adresKeys) {
+      const adresControl = this.registerForm.get(key);
+      adresControl.disable();
     }
   }
 }

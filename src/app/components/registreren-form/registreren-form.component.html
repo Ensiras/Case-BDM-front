@@ -33,44 +33,35 @@
       </li>
     </ul>
     <h2>Adres</h2>
-    <p>Het invoeren van een adres is verplicht als u afhalen thuis als bezorgwijze ondersteunt.</p>
+    <p>Het invoeren van een adres is alleen verplicht als u afhalen thuis als bezorgwijze ondersteunt.</p>
     <ul>
       <li>
         <label for="straat">Straat: </label>
-        <input type="text" id="straat" formControlName="straat">
+        <input type="text" id="straat" formControlName="straat" >
       </li>
       <li>
         <label for="huisnummer">Huisnummer: </label>
-        <input type="text" id="huisnummer" formControlName="huisnummer">
-        <!--      // TODO: make sure that all fields are filled in when one is, that after user empties field adres is optional again -->
+        <input type="text" id="huisnummer" formControlName="huisnummer" >
       </li>
       <li>
         <label for="postcode">Postcode: </label>
-        <input type="text" id="postcode" formControlName="postcode">
-        <!--      // TODO: make sure that all fields are filled in when one is, that after user empties field adres is optional again -->
+        <input type="text" id="postcode" formControlName="postcode" >
       </li>
       <li>
         <label for="stad">Stad: </label>
         <input type="text" id="stad" formControlName="stad">
-        <!--      // TODO: make sure that all fields are filled in when one is, that after user empties field adres is optional again -->
+      </li>
+      <h2>Algemene voorwaarden</h2>
+      <li>
+        <label for="voorwaardenTextArea"></label>
+        <textarea id="voorwaardenTextArea">{{algemeneVoorwaarden}}</textarea>
       </li>
       <li>
         <input type="checkbox" id="akkoordVoorwaarden" formControlName="akkoordVoorwaarden">
-        <label for="akkoordVoorwaarden">Ja, iets met het gelezen hebben van de voorwaarden en ik ben het er mee
-          eens.</label>
+        <label for="akkoordVoorwaarden">Ja, ik ga akkoord met de algemene voorwaarden.</label>
       </li>
     </ul>
 
     <button [disabled]="registerForm.invalid" (click)="registreerGebruiker()">Registreer</button>
   </form>
-
-  <h1>Bestaande gebruikers: </h1>
-  <table>
-    <tr>
-      <th>email:</th>
-    </tr>
-    <tr *ngFor="let gebruiker of gebruikers">
-      <td>{{gebruiker.email}}</td>
-    </tr>
-  </table>
 </div>

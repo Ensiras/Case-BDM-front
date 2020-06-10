@@ -78,4 +78,17 @@ describe('RegistrerenFormComponent', () => {
     expect(component.registerForm.valid).toBeTrue();
   });
 
+  it('when one adres field is filled in all are required', () => {
+    const straatControl = component.registerForm.controls.straat;
+    const validHuisnummer = component.registerForm.controls.huisnummer.valid;
+    const validPostcode = component.registerForm.controls.postcode.valid;
+    const validStad = component.registerForm.controls.stad.valid;
+
+    straatControl.setValue('een waarde');
+    
+    expect(validHuisnummer).toBeFalse();
+    expect(validPostcode).toBeFalse();
+    expect(validStad).toBeFalse();
+  });
+
 });
