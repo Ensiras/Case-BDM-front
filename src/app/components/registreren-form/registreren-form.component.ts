@@ -3,6 +3,7 @@ import {EmailValidator, FormControl, FormGroup, Validators} from '@angular/forms
 import {RegistrerenGebruikerService} from '../../services/registreren-gebruiker.service';
 import {Gebruiker} from '../../models/gebruiker';
 import {validateEmail} from '../../validators/email-validator';
+import {validatePostcode} from '../../validators/postcode-validator';
 
 @Component({
   selector: 'app-registreren-form',
@@ -21,7 +22,7 @@ export class RegistrerenFormComponent implements OnInit {
       bezorgVersturenRembours: new FormControl(),
       straat: new FormControl(),
       huisnummer: new FormControl(),
-      postcode: new FormControl(),
+      postcode: new FormControl('', validatePostcode),
       stad: new FormControl(),
       akkoordVoorwaarden: new FormControl('', Validators.required)
     });
