@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpResponse} from '@angular/common/http';
 import {Gebruiker} from '../models/gebruiker';
-import {Bezorgwijze} from '../models/bezorgwijze.enum';
-import {GebruikerSimpelTest} from '../models/gebruiker-simpel-test';
+import {Observable} from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
@@ -17,11 +17,21 @@ export class RegistrerenGebruikerService {
 
   registreerGebruiker(gebruiker: Gebruiker) {
     console.log('Registeren gebruiker met email: ' + gebruiker.email);
-    this.gebruikers.push(gebruiker);
     delete gebruiker.emailCheck; // TODO: zorgen dat dit niet meer nodig is.
-    // TODO: zorgen dat er daadwerkelijk een Gebruiker opgestuurd wordt, niet alleen de 'waarden van'.
-    const objectObservable = this.httpClient.post<Gebruiker>(this.url, gebruiker, {responseType: 'json'});
-    objectObservable.subscribe(gebr => this.gebruikers.push());
+    const objectObservable = this.httpClient.post<Gebruiker>(this.url, gebruiker);
+    objectObservable.subscribe();
     return this.gebruikers;
+  }
+
+  // FIXME: als ik tijd overheb proberen te controleren of een email al bekend is.
+  private async checkReponse(objectObservable: Observable<HttpResponse<Gebruiker>>) {
+    console.log('checking response');
+    await objectObservable.subscribe(resp => {
+      status = resp.headers.get(status);
+    });
+    console.log(status);
+    if (status === '400') {
+      console.log('Email already exists.');
+    }
   }
 }

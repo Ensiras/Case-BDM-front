@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {EmailValidator, FormControl, FormGroup, Validators} from '@angular/forms';
 import {RegistrerenGebruikerService} from '../../services/registreren-gebruiker.service';
 import {Gebruiker} from '../../models/gebruiker';
+import {validateEmail} from '../../validators/email-validator';
 
 @Component({
   selector: 'app-registreren-form',
@@ -13,8 +14,7 @@ export class RegistrerenFormComponent implements OnInit {
 
   registerForm = new FormGroup(
     {
-      email: new FormControl('', /*Validators.required*/),
-      emailCheck: new FormControl('', /*Validators.required*/),
+      email: new FormControl('', [Validators.required, validateEmail]),
       bezorgAfhalenThuis: new FormControl(),
       bezorgAfhalenMagazijn: new FormControl(),
       bezorgVersturenVooruit: new FormControl(),

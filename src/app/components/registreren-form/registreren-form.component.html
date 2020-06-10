@@ -8,11 +8,6 @@
         <input type="text" id="email" formControlName="email">
         <span *ngIf="registerForm.controls.email.errors?.required">Dit veld is verplicht.</span>
       </li>
-      <li>
-        <label for="emailCheck">E-mail (herhaal): </label>
-        <input type="text" id="emailCheck" formControlName="emailCheck">
-        <span *ngIf="registerForm.controls.emailCheck.errors?.required">Dit veld is verplicht.</span>
-      </li>
     </ul>
 
     <h2>Bezorgwijzen</h2>
