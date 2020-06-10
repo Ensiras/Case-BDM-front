@@ -22,12 +22,12 @@ export class RegistrerenFormComponent implements OnInit {
       bezorgVersturenRembours: new FormControl(),
       straat: new FormControl(),
       huisnummer: new FormControl(),
-      postcode: new FormControl('', validatePostcode),
+      postcode: new FormControl(),
       stad: new FormControl(),
       akkoordVoorwaarden: new FormControl('', Validators.required)
     });
 
-  adresVerplicht = false;
+  private adresVerplicht = false;
   gebruikers: Gebruiker[];
 
   constructor(private registrerenGebruikerService: RegistrerenGebruikerService) {
@@ -38,11 +38,37 @@ export class RegistrerenFormComponent implements OnInit {
 
   setAdresVerplicht() {
     this.adresVerplicht = !this.adresVerplicht;
-    /*this.adresForm.controls.adresStraat.setValidators(Validators.required);*/
+    if (this.adresVerplicht) {
+      this.addAdresValidators();
+    } else {
+      this.removeAdresValidators();
+    }
   }
-
 
   registreerGebruiker() {
     this.gebruikers = this.registrerenGebruikerService.registreerGebruiker(this.registerForm.value);
+  }
+
+  private addAdresValidators() {
+    // Needed to only iterate through adres controls, no others.
+    const adresKeys = ['straat', 'huisnummer', 'postcode', 'stad'];
+    for (const key of adresKeys) {
+      const adresControl = this.registerForm.get(key);
+      if (key === 'postcode') { // postcode is special because it needs 2 validators
+        adresControl.setValidators([Validators.required, validatePostcode]);
+      } else {
+        adresControl.setValidators(Validators.required);
+      }
+      adresControl.updateValueAndValidity();
+    }
+  }
+
+  private removeAdresValidators() {
+    const adresKeys = ['straat', 'huisnummer', 'postcode', 'stad'];
+    for (const key of adresKeys) {
+      const adresControl = this.registerForm.get(key);
+      adresControl.clearValidators();
+      adresControl.updateValueAndValidity();
+    }
   }
 }

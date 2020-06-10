@@ -11,7 +11,7 @@
     </ul>
 
     <h2>Bezorgwijzen</h2>
-    <p>Kies welke bezorgwijzen u wilt ondersteunen (niet verplicht).</p>
+    <p>Kies welke bezorgwijzen u wilt ondersteunen, dit is alleen nodig als u artikelen wilt aanbieden op de site.</p>
 
     <ul>
       <li>
@@ -33,11 +33,11 @@
       </li>
     </ul>
     <h2>Adres</h2>
-    <p *ngIf="!adresVerplicht">Alleen verplicht als u afhalen thuis als bezorgwijze ondersteunt.</p>
+    <p>Het invoeren van een adres is verplicht als u afhalen thuis als bezorgwijze ondersteunt.</p>
     <ul>
       <li>
         <label for="straat">Straat: </label>
-        <input type="text" id="straat" formControlName="straat" [required]="adresVerplicht">
+        <input type="text" id="straat" formControlName="straat">
       </li>
       <li>
         <label for="huisnummer">Huisnummer: </label>
