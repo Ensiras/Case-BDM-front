@@ -26,8 +26,14 @@ describe('EmailValidator', () => {
     expect(result.inValidEmail).toBeTrue();
   });
 
-  it('should return null if . comes after the @', () => {
-    control.setValue('mail@test.com');
+  it('should return invalidEmail true if no characters are given after .', () => {
+    control.setValue('mail@test.');
+    const result = validateEmail(control);
+    expect(result.inValidEmail).toBeTrue();
+  });
+
+  it('should return null if email is valid', () => {
+    control.setValue('mail@test.c');
     const result = validateEmail(control);
     expect(result).toBeNull();
   });
