@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpResponse} from '@angular/common/http';
 import {Gebruiker} from '../models/gebruiker';
 import {Observable} from 'rxjs';
+import {tap} from 'rxjs/operators';
 
 
 @Injectable({
@@ -11,16 +12,16 @@ export class RegistrerenGebruikerService {
 
   url = 'http://localhost:9080/gebruikers/nieuw';
   gebruikers: Gebruiker[] = [];
+  private status: string;
 
   constructor(private httpClient: HttpClient) {
   }
 
   registreerGebruiker(gebruiker: Gebruiker) {
     console.log('Registeren gebruiker met email: ' + gebruiker.email);
-    delete gebruiker.emailCheck; // TODO: zorgen dat dit niet meer nodig is.
-    const objectObservable = this.httpClient.post<Gebruiker>(this.url, gebruiker);
-    objectObservable.subscribe();
-    return this.gebruikers;
+    return this.httpClient.post<Gebruiker>(this.url, gebruiker)
+      .pipe(
+        tap(_ => console.log('Gebruiker posted.')));
   }
 
   // FIXME: als ik tijd overheb proberen te controleren of een email al bekend is.

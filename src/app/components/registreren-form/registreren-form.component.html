@@ -1,6 +1,7 @@
 <div>
   <h1>Registreren</h1>
 
+
   <form [formGroup]="registerForm">
     <ul>
       <li>
@@ -34,24 +35,27 @@
     </ul>
     <h2>Adres</h2>
     <p>Het invoeren van een adres is alleen verplicht als u afhalen thuis als bezorgwijze ondersteunt.</p>
-    <ul>
+    <ul *ngIf="adresVerplicht">
       <li>
         <label for="straat">Straat: </label>
-        <input type="text" id="straat" formControlName="straat" >
+        <input type="text" id="straat" formControlName="straat">
       </li>
       <li>
         <label for="huisnummer">Huisnummer: </label>
-        <input type="text" id="huisnummer" formControlName="huisnummer" >
+        <input type="text" id="huisnummer" formControlName="huisnummer">
       </li>
       <li>
         <label for="postcode">Postcode: </label>
-        <input type="text" id="postcode" formControlName="postcode" >
+        <input type="text" id="postcode" formControlName="postcode">
       </li>
       <li>
         <label for="stad">Stad: </label>
         <input type="text" id="stad" formControlName="stad">
       </li>
-      <h2>Algemene voorwaarden</h2>
+    </ul>
+
+    <h2>Algemene voorwaarden</h2>
+    <ul>
       <li>
         <label for="voorwaardenTextArea"></label>
         <textarea id="voorwaardenTextArea">{{algemeneVoorwaarden}}</textarea>
@@ -62,6 +66,6 @@
       </li>
     </ul>
 
-    <button [disabled]="registerForm.invalid" (click)="registreerGebruiker()">Registreer</button>
+    <button [disabled]="registerForm.invalid" (click)="registreerGebruiker()" routerLink="/registreren/succes">Registreer</button>
   </form>
 </div>

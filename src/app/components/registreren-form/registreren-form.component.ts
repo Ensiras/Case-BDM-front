@@ -29,8 +29,8 @@ export class RegistrerenFormComponent implements OnInit {
     });
 
   adresVerplicht = false;
-  gebruikers: Gebruiker[];
   algemeneVoorwaarden: string;
+  gebruikers: Gebruiker;
 
   constructor(private registrerenGebruikerService: RegistrerenGebruikerService,
               private algemeneVoorwaardenService: AlgemeneVoorwaardenService) {
@@ -53,7 +53,8 @@ export class RegistrerenFormComponent implements OnInit {
   }
 
   registreerGebruiker() {
-    this.gebruikers = this.registrerenGebruikerService.registreerGebruiker(this.registerForm.value);
+    this.registrerenGebruikerService.registreerGebruiker(this.registerForm.value).
+    subscribe(gebruiker => this.gebruikers = gebruiker);
   }
 
   private addAdresValidators() {

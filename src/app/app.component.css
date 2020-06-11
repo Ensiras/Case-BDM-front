@@ -19,6 +19,7 @@
 
 #navTitle:hover {
   background: #00435f;
+  cursor: pointer;
 }
 
 #navList {
@@ -41,6 +42,7 @@
 }
 
 .navListItem:hover {
+  cursor: pointer;
   background: #00435f;
 }
 

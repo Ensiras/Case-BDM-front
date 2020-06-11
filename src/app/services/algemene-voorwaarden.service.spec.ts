@@ -16,9 +16,4 @@ describe('AlgemeneVoorwaardenService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('when reading from file should store contents in field', () => {
-    service.readAlgemeneVoorwaardenFromFile();
-    // let text = service.getText();
-    // expect(text).toContain('lorem');
-  });
 });
