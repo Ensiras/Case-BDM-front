@@ -9,7 +9,7 @@ import {AlgemeneVoorwaardenService} from '../../services/algemene-voorwaarden.se
 @Component({
   selector: 'app-registreren-form',
   templateUrl: './registreren-form.component.html',
-  styleUrls: ['./registreren-form.component.css']
+  styleUrls: ['./registreren-form.component.css', '../../app.component.css']
 })
 
 export class RegistrerenFormComponent implements OnInit {

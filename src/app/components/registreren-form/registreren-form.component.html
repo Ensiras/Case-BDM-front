@@ -1,4 +1,4 @@
-<div>
+<div class="mainWrapper">
   <h1>Registreren</h1>
 
 
@@ -6,8 +6,13 @@
     <ul>
       <li>
         <label for="email">E-mail: </label>
-        <input type="text" id="email" formControlName="email">
-        <span *ngIf="registerForm.controls.email.errors?.required">Dit veld is verplicht.</span>
+        <input type="text" class="userInput" id="email" formControlName="email">
+        <span class="formValidationError"
+              *ngIf="registerForm.controls.email.errors?.required
+              && registerForm.controls.email.touched">Dit veld is verplicht.</span>
+        <span class="formValidationError" *ngIf="registerForm.controls.email.invalid
+        && registerForm.controls.email.touched
+        && !registerForm.controls.email.errors?.required">Dit is geen geldig e-mailadres.</span>
       </li>
     </ul>
 
@@ -38,19 +43,35 @@
     <ul *ngIf="adresVerplicht">
       <li>
         <label for="straat">Straat: </label>
-        <input type="text" id="straat" formControlName="straat">
+        <input type="text" class="userInput" id="straat" formControlName="straat">
+        <span class="formValidationError"
+              *ngIf="registerForm.controls.straat.errors?.required
+              && registerForm.controls.straat.touched">Dit veld is verplicht.</span>
       </li>
       <li>
         <label for="huisnummer">Huisnummer: </label>
-        <input type="text" id="huisnummer" formControlName="huisnummer">
+        <input type="text" class="userInput" id="huisnummer" formControlName="huisnummer">
+        <span class="formValidationError"
+              *ngIf="registerForm.controls.huisnummer.errors?.required
+              && registerForm.controls.huisnummer.touched">Dit veld is verplicht.</span>
       </li>
       <li>
         <label for="postcode">Postcode: </label>
-        <input type="text" id="postcode" formControlName="postcode">
+        <input type="text" class="userInput" id="postcode" formControlName="postcode">
+        <span class="formValidationError"
+              *ngIf="registerForm.controls.postcode.errors?.required
+              && registerForm.controls.postcode.touched">Dit veld is verplicht.</span>
+        <span class="formValidationError"
+              *ngIf="registerForm.controls.postcode?.invalid
+              && registerForm.controls.postcode.touched
+              && !registerForm.controls.postcode.errors?.required">Dit is geen geldige postcode.</span>
       </li>
       <li>
         <label for="stad">Stad: </label>
-        <input type="text" id="stad" formControlName="stad">
+        <input type="text" class="userInput" id="stad" formControlName="stad">
+        <span class="formValidationError"
+              *ngIf="registerForm.controls.stad.errors?.required
+              && registerForm.controls.stad.touched">Dit veld is verplicht.</span>
       </li>
     </ul>
 
@@ -58,7 +79,7 @@
     <ul>
       <li>
         <label for="voorwaardenTextArea"></label>
-        <textarea id="voorwaardenTextArea">{{algemeneVoorwaarden}}</textarea>
+        <textarea readonly id="voorwaardenTextArea">{{algemeneVoorwaarden}}</textarea>
       </li>
       <li>
         <input type="checkbox" id="akkoordVoorwaarden" formControlName="akkoordVoorwaarden">
@@ -66,6 +87,8 @@
       </li>
     </ul>
 
-    <button [disabled]="registerForm.invalid" (click)="registreerGebruiker()" routerLink="/registreren/succes">Registreer</button>
+    <button [disabled]="registerForm.invalid" (click)="registreerGebruiker()" routerLink="/registreren/succes">
+      Registreer
+    </button>
   </form>
 </div>
