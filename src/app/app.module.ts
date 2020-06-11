@@ -11,6 +11,7 @@ import {RouterModule} from '@angular/router';
 import {routes} from './app.routes';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HomeComponent } from './components/home/home.component';
+import { RegistrerenFailComponent } from './components/registreren-fail/registreren-fail.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { HomeComponent } from './components/home/home.component';
     ObservableTestingComponent,
     RegistrerenSuccesComponent,
     NotFoundComponent,
-    HomeComponent
+    HomeComponent,
+    RegistrerenFailComponent
   ],
   imports: [
     BrowserModule,

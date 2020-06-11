@@ -5,6 +5,7 @@ import {Gebruiker} from '../../models/gebruiker';
 import {validateEmail} from '../../validators/email-validator';
 import {validatePostcode} from '../../validators/postcode-validator';
 import {AlgemeneVoorwaardenService} from '../../services/algemene-voorwaarden.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-registreren-form',
@@ -13,6 +14,7 @@ import {AlgemeneVoorwaardenService} from '../../services/algemene-voorwaarden.se
 })
 
 export class RegistrerenFormComponent implements OnInit {
+
 
   registerForm = new FormGroup(
     {
@@ -33,7 +35,8 @@ export class RegistrerenFormComponent implements OnInit {
   gebruikers: Gebruiker;
 
   constructor(private registrerenGebruikerService: RegistrerenGebruikerService,
-              private algemeneVoorwaardenService: AlgemeneVoorwaardenService) {
+              private algemeneVoorwaardenService: AlgemeneVoorwaardenService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -54,7 +57,14 @@ export class RegistrerenFormComponent implements OnInit {
 
   registreerGebruiker() {
     this.registrerenGebruikerService.registreerGebruiker(this.registerForm.value).
-    subscribe(gebruiker => this.gebruikers = gebruiker);
+    subscribe(gebruiker => {
+        this.gebruikers = gebruiker;
+        this.router.navigate(['/registreren/succes']);
+      },
+      error => {
+      console.log('Something went wrong.');
+      this.router.navigate(['/registreren/error']);
+    });
   }
 
   private addAdresValidators() {

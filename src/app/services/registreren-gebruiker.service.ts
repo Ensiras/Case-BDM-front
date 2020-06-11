@@ -19,9 +19,7 @@ export class RegistrerenGebruikerService {
 
   registreerGebruiker(gebruiker: Gebruiker) {
     console.log('Registeren gebruiker met email: ' + gebruiker.email);
-    return this.httpClient.post<Gebruiker>(this.url, gebruiker)
-      .pipe(
-        tap(_ => console.log('Gebruiker posted.')));
+    return this.httpClient.post<Gebruiker>(this.url, gebruiker);
   }
 
   // FIXME: als ik tijd overheb proberen te controleren of een email al bekend is.
