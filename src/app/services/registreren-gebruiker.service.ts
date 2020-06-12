@@ -11,8 +11,6 @@ import {tap} from 'rxjs/operators';
 export class RegistrerenGebruikerService {
 
   url = 'http://localhost:9080/gebruikers/nieuw';
-  gebruikers: Gebruiker[] = [];
-  private status: string;
 
   constructor(private httpClient: HttpClient) {
   }

@@ -3,6 +3,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RegistrerenFormComponent } from './registreren-form.component';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {RegistrerenGebruikerService} from '../../services/registreren-gebruiker.service';
+import {RouterModule} from '@angular/router';
+import {routes} from '../../app.routes';
 
 describe('RegistrerenFormComponent', () => {
   let component: RegistrerenFormComponent;
@@ -12,7 +14,7 @@ describe('RegistrerenFormComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ RegistrerenFormComponent ],
       // Needed for running tests
-      imports: [HttpClientTestingModule],
+      imports: [HttpClientTestingModule, RouterModule.forRoot(routes)],
       providers: [RegistrerenGebruikerService]
     })
     .compileComponents();
@@ -85,7 +87,7 @@ describe('RegistrerenFormComponent', () => {
     const validStad = component.registerForm.controls.stad.valid;
 
     straatControl.setValue('een waarde');
-    
+
     expect(validHuisnummer).toBeFalse();
     expect(validPostcode).toBeFalse();
     expect(validStad).toBeFalse();

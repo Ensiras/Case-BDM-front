@@ -1,5 +1,5 @@
 <div class="mainWrapper">
-  <form [formGroup]="ArtikelForm" id="nieuwArtikelForm">
+  <form [formGroup]="artikelForm" id="nieuwArtikelForm">
     <ul>
       <li>
         <label for="artikelSoort">Artikel soort</label>
@@ -19,7 +19,7 @@
       <li>
         <label for="artikelCategorie">Categorie</label>
         <select id="artikelCategorie" formControlName="categorie">
-          <option *ngFor="let categorie of categorieen">{{categorie}}</option>
+          <option *ngFor="let categorie of categorieen">{{categorie.categorieNaam}}</option>
         </select>
       </li>
       <li>
@@ -33,12 +33,13 @@
       <ul>
         <li *ngFor="let bezorgwijze of bezorgwijzenGebruiker">
           <label [htmlFor]="bezorgwijze.attributeName">{{bezorgwijze.displayName}}</label>
-          <input type="checkbox" [id]="bezorgwijze.attributeName">
+          <input type="checkbox" [id]="bezorgwijze.attributeName" [formControlName]="bezorgwijze.attributeName">
         </li>
       </ul>
     </div>
     <ul id="nieuwArtikelBijlagen">
       <li>Bijlage 1 (zie probeersel webapptest)<button>Bijlage toevoegen</button></li>
     </ul>
+    <button (click)="aanbiedenArtikel()">Artikel plaatsen</button>
   </form>
 </div>
