@@ -1,1 +1,44 @@
-<p>artikel-nieuw works!</p>
+<div class="mainWrapper">
+  <form [formGroup]="ArtikelForm" id="nieuwArtikelForm">
+    <ul>
+      <li>
+        <label for="artikelSoort">Artikel soort</label>
+        <select id="artikelSoort" formControlName="soort" (change)="setFormFields()">
+          <option value="Product">Product</option>
+          <option value="Dienst">Dienst</option>
+        </select>
+      </li>
+      <li>
+        <label for="artikelNaam">Artikel naam</label>
+        <input type="text" id="artikelNaam" formControlName="naam">
+      </li>
+      <li>
+        <label for="artikelPrijs">Prijs</label>
+        <input type="number" id="artikelPrijs" formControlName="prijs">
+      </li>
+      <li>
+        <label for="artikelCategorie">Categorie</label>
+        <select id="artikelCategorie" formControlName="categorie">
+          <option *ngFor="let categorie of categorieen">{{categorie}}</option>
+        </select>
+      </li>
+      <li>
+        <label for="artikelOmschrijving">Omschrijving (optioneel)</label>
+        <input type="text" id="artikelOmschrijving" formControlName="omschrijving">
+      </li>
+    </ul>
+    <div *ngIf="showBezorgwijzen">
+      <h2>Bezorgwijzen</h2>
+      <p>Kies hier welke bezorgwijzen u voor dit artikel wilt ondersteunen.</p>
+      <ul>
+        <li *ngFor="let bezorgwijze of bezorgwijzenGebruiker">
+          <label [htmlFor]="bezorgwijze.attributeName">{{bezorgwijze.displayName}}</label>
+          <input type="checkbox" [id]="bezorgwijze.attributeName">
+        </li>
+      </ul>
+    </div>
+    <ul id="nieuwArtikelBijlagen">
+      <li>Bijlage 1 (zie probeersel webapptest)<button>Bijlage toevoegen</button></li>
+    </ul>
+  </form>
+</div>

@@ -30,4 +30,26 @@ export class GebruikerService {
     this.huidigeGebruiker = this.gebruikerDummy;
     return this.huidigeGebruiker;
   }
+
+  getBezorgwijzen() {
+    if (!this.huidigeGebruiker) {
+      this.login(); // For testing purposes force login if not yet done
+    }
+    const bezorgwijzen: {displayName: string, attributeName: string}[] = [];
+    if (this.huidigeGebruiker.bezorgAfhalenThuis) {
+      bezorgwijzen.push({displayName: 'Afhalen thuis', attributeName: 'bezorgAfhalenThuis'});
+    }
+    if (this.huidigeGebruiker.bezorgAfhalenMagazijn) {
+      bezorgwijzen.push({displayName: 'Afhalen magazijn', attributeName: 'bezorgAfhalenMagazijn'});
+    }
+    if (this.huidigeGebruiker.bezorgVersturenVooruit) {
+      bezorgwijzen.push({displayName: 'Versturen vooruitbetaald', attributeName: 'bezorgVersturenVooruit'});
+    }
+    if (this.huidigeGebruiker.bezorgVersturenRembours) {
+      bezorgwijzen.push({displayName: 'Versturen rembours', attributeName: 'bezorgVersturenRembours'});
+    }
+    return bezorgwijzen;
+  }
+
+  // TODO: uitloggen ook mogelijk maken.
 }

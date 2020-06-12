@@ -54,14 +54,11 @@
   margin-left: auto;
   margin-right: auto;
   width: 50%;
+  font-size: 1.2em;
 }
 
 h1 {
   color: #01689b;
-}
-
-div {
-  font-size: 1.2em;
 }
 
 .userInput.ng-dirty.ng-invalid,
