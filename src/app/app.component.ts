@@ -1,5 +1,7 @@
 import {Component} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Gebruiker} from './models/gebruiker';
+import {GebruikerService} from './services/gebruiker.service';
 
 @Component({
   selector: 'app-root',
@@ -8,11 +10,13 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 })
 export class AppComponent {
   title = 'BDMFront';
-  ingelogd = true;
+  huidigeGebruiker: Gebruiker;
 
-  // FIXME: methode uitbreiden...
-  inloggen() {
-    this.ingelogd = !this.ingelogd;
+  constructor(private gebruikerService: GebruikerService) {
+  }
+
+  login() {
+    this.huidigeGebruiker = this.gebruikerService.login();
   }
 }
 

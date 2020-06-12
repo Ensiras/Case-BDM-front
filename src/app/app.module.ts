@@ -12,6 +12,7 @@ import {routes} from './app.routes';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HomeComponent } from './components/home/home.component';
 import { RegistrerenFailComponent } from './components/registreren-fail/registreren-fail.component';
+import { ArtikelNieuwComponent } from './components/artikel-nieuw/artikel-nieuw.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { RegistrerenFailComponent } from './components/registreren-fail/registre
     RegistrerenSuccesComponent,
     NotFoundComponent,
     HomeComponent,
-    RegistrerenFailComponent
+    RegistrerenFailComponent,
+    ArtikelNieuwComponent
   ],
   imports: [
     BrowserModule,

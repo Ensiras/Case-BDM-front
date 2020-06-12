@@ -3,10 +3,13 @@
   <span routerLink="/home" id="navTitle">BDM</span>
     <nav>
     <ul id="navList">
-      <li class="navListItem" routerLink="registreren">Registreren</li>
-      <li class="navListItem" (click)="inloggen()"><span>Inloggen</span></li>
+      <li class="navListItem" *ngIf="huidigeGebruiker == undefined" routerLink="/registreren">Registreren</li>
+      <li class="navListItem" (click)="login()"><span>Inloggen</span></li>
+      <li class="navListItem" *ngIf="huidigeGebruiker !== undefined" routerLink="/artikelen/nieuw"><span>Artikel aanbieden</span></li>
+
     </ul>
     </nav>
+  <span *ngIf="huidigeGebruiker !== undefined" id="loggedInUser">Ingelogd als: {{huidigeGebruiker.email}}</span>
 </div>
 <router-outlet></router-outlet>
 

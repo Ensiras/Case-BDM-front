@@ -4,6 +4,7 @@ import {RegistrerenSuccesComponent} from './components/registreren-succes/regist
 import {NotFoundComponent} from './components/not-found/not-found.component';
 import {HomeComponent} from './components/home/home.component';
 import {RegistrerenFailComponent} from './components/registreren-fail/registreren-fail.component';
+import {ArtikelNieuwComponent} from './components/artikel-nieuw/artikel-nieuw.component';
 
 export const routes: Routes = [
   {path: '',
@@ -12,5 +13,6 @@ export const routes: Routes = [
   {path: 'registreren', component: RegistrerenFormComponent},
   {path: 'registreren/succes', component: RegistrerenSuccesComponent},
   {path: 'registreren/error', component: RegistrerenFailComponent},
+  {path: 'artikelen/nieuw', component: ArtikelNieuwComponent},
   {path: '**', component: NotFoundComponent}
 ];

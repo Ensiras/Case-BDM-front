@@ -68,3 +68,7 @@ div {
 .userInput.ng-touched.ng-invalid {
   background: #f9dfdd;
 }
+
+#loggedInUser {
+  text-align: right;
+}
