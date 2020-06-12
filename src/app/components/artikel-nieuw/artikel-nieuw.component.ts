@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, RequiredValidator, Validators} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {GebruikerService} from '../../services/gebruiker.service';
 import {CategorieService} from '../../services/categorie.service';
 import {Categorie} from '../../models/categorie';
@@ -49,7 +49,8 @@ export class ArtikelNieuwComponent implements OnInit {
   }
 
   aanbiedenArtikel() {
-    this.artikelService.aanbiedenArtikel();
+    const artikel: Artikel = this.artikelForm.value;
+    this.artikelService.aanbiedenArtikel(artikel);
     console.log(this.artikelForm.value);
   }
 

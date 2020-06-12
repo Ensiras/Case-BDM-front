@@ -1,7 +1,7 @@
-import {CategorieSoort} from './categorie-soort.enum';
+import {ArtikelSoort} from './categorie-soort.enum';
 
 export interface Categorie {
   categorieNaam: string;
-  categorieSoort: CategorieSoort;
+  categorieSoort: ArtikelSoort;
   categorieOmschrijving: string;
 }

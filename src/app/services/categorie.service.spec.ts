@@ -2,7 +2,7 @@ import {TestBed} from '@angular/core/testing';
 
 import {CategorieService} from './categorie.service';
 import {Categorie} from '../models/categorie';
-import {CategorieSoort} from '../models/categorie-soort.enum';
+import {ArtikelSoort} from '../models/categorie-soort.enum';
 
 describe('CategorieService', () => {
   let service: CategorieService;
@@ -21,14 +21,14 @@ describe('CategorieService', () => {
     const productCategorie: Categorie =
       {
         categorieNaam: 'Elektronica',
-        categorieSoort: CategorieSoort.Product,
+        categorieSoort: ArtikelSoort.Product,
         categorieOmschrijving: 'TV\'s, computers, laptops en dergelijke'
       };
 
     const dienstCategorie: Categorie =
       {
         categorieNaam: 'Coaching',
-        categorieSoort: CategorieSoort.Dienst,
+        categorieSoort: ArtikelSoort.Dienst,
         categorieOmschrijving: 'Lifestyle, carrière, sport, enz.'};
 
     service.categorieen = [productCategorie, dienstCategorie];
@@ -43,14 +43,14 @@ describe('CategorieService', () => {
     const productCategorie: Categorie =
       {
         categorieNaam: 'Elektronica',
-        categorieSoort: CategorieSoort.Product,
+        categorieSoort: ArtikelSoort.Product,
         categorieOmschrijving: 'TV\'s, computers, laptops en dergelijke'
       };
 
     const dienstCategorie: Categorie =
       {
         categorieNaam: 'Coaching',
-        categorieSoort: CategorieSoort.Dienst,
+        categorieSoort: ArtikelSoort.Dienst,
         categorieOmschrijving: 'Lifestyle, carrière, sport, enz.'};
 
     service.categorieen = [productCategorie, dienstCategorie];

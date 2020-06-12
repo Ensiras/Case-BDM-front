@@ -1,4 +1,4 @@
-export enum CategorieSoort {
+export enum ArtikelSoort {
   Product,
   Dienst
 }
