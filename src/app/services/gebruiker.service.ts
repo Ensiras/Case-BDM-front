@@ -12,7 +12,7 @@ export class GebruikerService {
   // Basic gebruiker object for simulating logged in state.
   gebruikerDummy = {
     id: 1,
-    email: 'test@example.com',
+    email: 'simulatie@inlog.com',
     bezorgAfhalenThuis: true,
     bezorgAfhalenMagazijn: false,
     bezorgVersturenVooruit: true,
@@ -33,7 +33,7 @@ export class GebruikerService {
 
   getBezorgwijzen() {
     if (!this.huidigeGebruiker) {
-      this.login(); // For testing purposes force login if not yet done
+      this.login(); // For testing purposes, force login if not yet done
     }
     const bezorgwijzen: {displayName: string, attributeName: string}[] = [];
     if (this.huidigeGebruiker.bezorgAfhalenThuis) {
@@ -50,6 +50,4 @@ export class GebruikerService {
     }
     return bezorgwijzen;
   }
-
-  // TODO: uitloggen ook mogelijk maken.
 }

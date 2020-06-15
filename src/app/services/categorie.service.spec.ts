@@ -2,7 +2,7 @@ import {TestBed} from '@angular/core/testing';
 
 import {CategorieService} from './categorie.service';
 import {Categorie} from '../models/categorie';
-import {ArtikelSoort} from '../models/categorie-soort.enum';
+import {ArtikelSoort} from '../models/artikel-soort.enum';
 
 describe('CategorieService', () => {
   let service: CategorieService;

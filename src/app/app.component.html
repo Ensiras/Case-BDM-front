@@ -4,8 +4,9 @@
     <nav>
     <ul id="navList">
       <li class="navListItem" *ngIf="huidigeGebruiker == undefined" routerLink="/registreren">Registreren</li>
-      <li class="navListItem" (click)="login()"><span>Inloggen</span></li>
+      <li class="navListItem" *ngIf="huidigeGebruiker == undefined" (click)="login()"><span>Inloggen</span></li>
       <li class="navListItem" *ngIf="huidigeGebruiker !== undefined" routerLink="/artikelen/nieuw"><span>Artikel aanbieden</span></li>
+      <li class="navListItem" *ngIf="huidigeGebruiker !== undefined" (click)="loguit()"><span>Uitloggen</span></li>
 
     </ul>
     </nav>

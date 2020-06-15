@@ -4,19 +4,23 @@ import {Gebruiker} from './models/gebruiker';
 import {GebruikerService} from './services/gebruiker.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'BDMFront';
-  huidigeGebruiker: Gebruiker;
+    title = 'BDMFront';
+    huidigeGebruiker: Gebruiker;
 
-  constructor(private gebruikerService: GebruikerService) {
-  }
+    constructor(private gebruikerService: GebruikerService) {
+    }
 
-  login() {
-    this.huidigeGebruiker = this.gebruikerService.login();
-  }
+    login() {
+        this.huidigeGebruiker = this.gebruikerService.login();
+    }
+
+    loguit() {
+      this.huidigeGebruiker = undefined;
+    }
 }
 

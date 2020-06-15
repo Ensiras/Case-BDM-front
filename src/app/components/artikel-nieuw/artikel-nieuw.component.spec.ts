@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ArtikelNieuwComponent } from './artikel-nieuw.component';
+import {ArtikelNieuwComponent} from './artikel-nieuw.component';
 import {GebruikerService} from '../../services/gebruiker.service';
 import {CategorieService} from '../../services/categorie.service';
 import {ArtikelService} from '../../services/artikel.service';
@@ -12,11 +12,11 @@ describe('ArtikelNieuwComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ArtikelNieuwComponent ],
+      declarations: [ArtikelNieuwComponent],
       imports: [HttpClientTestingModule],
       providers: [GebruikerService, CategorieService, ArtikelService]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -54,4 +54,44 @@ describe('ArtikelNieuwComponent', () => {
     component.setFormFields();
     expect(component.artikelForm.controls.bezorgAfhalenThuis).toBeFalsy();
   });
+
+  it('when bijlage is added should check its type and accept it if it is supported', () => {
+    const image = {name: 'test.jpg', type: 'image', size: 1};
+    const video = {name: 'test.jpg', type: 'video', size: 1};
+    const audio = {name: 'test.jpg', type: 'audio', size: 1};
+
+    const resultImage = component.checkBijlage(image);
+    const resultVideo = component.checkBijlage(video);
+    const resultAudio = component.checkBijlage(audio);
+
+    expect(resultImage).toBeTrue();
+    expect(resultVideo).toBeTrue();
+    expect(resultAudio).toBeTrue();
+  });
+
+  it('when bijlage is added should check its type and reject it if it is not supported', () => {
+    const application = {name: 'test.jpg', type: 'application'};
+
+    const resultApp = component.checkBijlage(application);
+
+    expect(resultApp).toBeFalse();
+
+  });
+
+  it('when bijlage is added should check its size and return true if it is within limits', () => {
+    const image = {name: 'test.jpg', type: 'image', size: 10000000};
+
+    const resultImage = component.checkBijlage(image);
+
+    expect(resultImage).toBeTrue();
+  });
+
+  it('when bijlage is added should check its size and return false if it is too big', () => {
+    const image = {name: 'test.jpg', type: 'image', size: 10000001};
+
+    const resultImage = component.checkBijlage(image);
+
+    expect(resultImage).toBeFalse();
+  });
+
 });

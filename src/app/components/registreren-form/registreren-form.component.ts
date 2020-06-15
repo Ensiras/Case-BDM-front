@@ -27,12 +27,11 @@ export class RegistrerenFormComponent implements OnInit {
       huisnummer: new FormControl({value: '', disabled: true}),
       postcode: new FormControl({value: '', disabled: true}),
       stad: new FormControl({value: '', disabled: true}),
-      akkoordVoorwaarden: new FormControl('', Validators.required)
+      akkoordVoorwaarden: new FormControl('', Validators.requiredTrue)
     });
 
   adresVerplicht = false;
   algemeneVoorwaarden: string;
-  gebruikers: Gebruiker;
 
   constructor(private registrerenGebruikerService: RegistrerenGebruikerService,
               private algemeneVoorwaardenService: AlgemeneVoorwaardenService,
@@ -55,10 +54,9 @@ export class RegistrerenFormComponent implements OnInit {
     }
   }
 
-  registreerGebruiker() {
+  registreerGebruiker() { // FIXME: gaat eerst naar succes en pas later naar error als het misgaat...
     this.registrerenGebruikerService.registreerGebruiker(this.registerForm.value).
     subscribe(gebruiker => {
-        this.gebruikers = gebruiker;
         this.router.navigate(['/registreren/succes']);
       },
       error => {
@@ -105,4 +103,5 @@ export class RegistrerenFormComponent implements OnInit {
       adresControl.disable();
     }
   }
+
 }

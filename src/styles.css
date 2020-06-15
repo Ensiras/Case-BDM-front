@@ -1,1 +1,67 @@
-/* You can add global styles to this file, and also import other style files */
+.formLabelHead {
+  font-weight: bold;
+  margin-top: 16px;
+}
+
+p, label, h1, h2, h3, h4 {
+  font-family: Verdana, serif;
+  margin: 8px 0;
+}
+
+.formValidationError {
+  color: darkred;
+  margin-left: 5px;
+}
+
+.mainWrapper {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  margin-top: 60px;
+}
+
+h1 {
+  font-size: 20pt;
+}
+
+.userInput.ng-dirty.ng-invalid,
+.userInput.ng-touched.ng-invalid {
+  background: #f9dfdd;
+}
+
+.checkBox {
+  margin: 7px;
+}
+
+.userInput {
+  margin: 5px 0;
+}
+
+.submitButton {
+  border: 0;
+  background: #01689b;
+  color: white;
+  font-size: 15pt;
+  padding: 10px;
+}
+
+.submitButton:disabled {
+  background: grey;
+}
+
+.submitButton:enabled:hover {
+  cursor: pointer;
+  background: #00435f;
+}
+
+form {
+  align-content: center;
+}
+
+li {
+  list-style: none;
+}
+
+ul {
+  padding: 0;
+}

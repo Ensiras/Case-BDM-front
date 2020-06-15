@@ -1,4 +1,4 @@
-import {ArtikelSoort} from './categorie-soort.enum';
+import {ArtikelSoort} from './artikel-soort.enum';
 
 export interface Categorie {
   categorieNaam: string;

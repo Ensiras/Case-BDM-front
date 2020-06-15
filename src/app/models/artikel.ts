@@ -1,4 +1,4 @@
-import {ArtikelSoort} from './categorie-soort.enum';
+import {ArtikelSoort} from './artikel-soort.enum';
 import {Categorie} from './categorie';
 
 export interface Artikel {
@@ -13,5 +13,5 @@ export interface Artikel {
   bezorgVersturenVooruit: boolean;
   bezorgVersturenRembours: boolean;
   gebruikerId: number;
-  bijlagen: string[];
+  bijlage: File[];
 }

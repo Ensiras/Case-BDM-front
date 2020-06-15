@@ -5,7 +5,9 @@
   <form [formGroup]="registerForm">
     <ul>
       <li>
-        <label for="email">E-mail: </label>
+        <label class="formLabelHead" for="email">E-mail: </label>
+      </li>
+      <li>
         <input type="text" class="userInput" id="email" formControlName="email">
         <span class="formValidationError"
               *ngIf="registerForm.controls.email.errors?.required
@@ -16,47 +18,53 @@
       </li>
     </ul>
 
-    <h2>Bezorgwijzen</h2>
+    <p class="formLabelHead">Bezorgwijzen</p>
     <p>Kies welke bezorgwijzen u wilt ondersteunen, dit is alleen nodig als u artikelen wilt aanbieden op de site.</p>
 
     <ul>
       <li>
-        <label for="bezorgAfhalenThuis">Afhalen thuis</label>
-        <input type="checkbox" id="bezorgAfhalenThuis" formControlName="bezorgAfhalenThuis"
+        <input class="checkBox" type="checkbox" id="bezorgAfhalenThuis" formControlName="bezorgAfhalenThuis"
                (click)="setAdresVerplicht()">
+        <label class="formLabelValue" for="bezorgAfhalenThuis">Afhalen thuis</label>
       </li>
       <li>
-        <label for="bezorgAfhalenMagazijn">Afhalen magazijn</label>
-        <input type="checkbox" id="bezorgAfhalenMagazijn" formControlName="bezorgAfhalenMagazijn">
+        <input class="checkBox" type="checkbox" id="bezorgAfhalenMagazijn" formControlName="bezorgAfhalenMagazijn">
+        <label class="formLabelValue" for="bezorgAfhalenMagazijn">Afhalen magazijn</label>
       </li>
       <li>
-        <label for="bezorgVersturenVooruit">Versturen vooruitbetaald</label>
-        <input type="checkbox" id="bezorgVersturenVooruit" formControlName="bezorgVersturenVooruit">
+        <input class="checkBox" type="checkbox" id="bezorgVersturenVooruit" formControlName="bezorgVersturenVooruit">
+        <label class="formLabelValue" for="bezorgVersturenVooruit">Versturen vooruitbetaald</label>
       </li>
       <li>
-        <label for="bezorgVersturenRembours">Versturen rembours</label>
-        <input type="checkbox" id="bezorgVersturenRembours" formControlName="bezorgVersturenRembours">
+        <input class="checkBox" type="checkbox" id="bezorgVersturenRembours" formControlName="bezorgVersturenRembours">
+        <label class="formLabelValue" for="bezorgVersturenRembours">Versturen rembours</label>
       </li>
     </ul>
-    <h2>Adres</h2>
+    <p class="formLabelHead">Adres</p>
     <p>Het invoeren van een adres is alleen verplicht als u afhalen thuis als bezorgwijze ondersteunt.</p>
     <ul *ngIf="adresVerplicht">
       <li>
-        <label for="straat">Straat: </label>
+        <label class="formLabelHead" for="straat">Straat: </label>
+      </li>
+      <li>
         <input type="text" class="userInput" id="straat" formControlName="straat">
         <span class="formValidationError"
               *ngIf="registerForm.controls.straat.errors?.required
               && registerForm.controls.straat.touched">Dit veld is verplicht.</span>
       </li>
       <li>
-        <label for="huisnummer">Huisnummer: </label>
+        <label class="formLabelHead" for="huisnummer">Huisnummer: </label>
+      </li>
+      <li>
         <input type="text" class="userInput" id="huisnummer" formControlName="huisnummer">
         <span class="formValidationError"
               *ngIf="registerForm.controls.huisnummer.errors?.required
               && registerForm.controls.huisnummer.touched">Dit veld is verplicht.</span>
       </li>
       <li>
-        <label for="postcode">Postcode: </label>
+        <label class="formLabelHead" for="postcode">Postcode: </label>
+      </li>
+      <li>
         <input type="text" class="userInput" id="postcode" formControlName="postcode">
         <span class="formValidationError"
               *ngIf="registerForm.controls.postcode.errors?.required
@@ -67,7 +75,9 @@
               && !registerForm.controls.postcode.errors?.required">Dit is geen geldige postcode.</span>
       </li>
       <li>
-        <label for="stad">Stad: </label>
+        <label class="formLabelHead" for="stad">Stad: </label>
+      </li>
+      <li>
         <input type="text" class="userInput" id="stad" formControlName="stad">
         <span class="formValidationError"
               *ngIf="registerForm.controls.stad.errors?.required
@@ -75,7 +85,7 @@
       </li>
     </ul>
 
-    <h2>Algemene voorwaarden</h2>
+    <p class="formLabelHead">Algemene voorwaarden</p>
     <ul>
       <li>
         <label for="voorwaardenTextArea"></label>
@@ -87,7 +97,7 @@
       </li>
     </ul>
 
-    <button [disabled]="registerForm.invalid" (click)="registreerGebruiker()" routerLink="/registreren/succes">
+    <button class="submitButton" [disabled]="registerForm.invalid" (click)="registreerGebruiker()" routerLink="/registreren/succes">
       Registreer
     </button>
   </form>
