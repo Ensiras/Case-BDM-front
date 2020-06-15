@@ -16,7 +16,7 @@ export class ArtikelService {
   aanbiedenArtikel(artikel: Artikel, bijlage: any) {
     console.log('Artikel received!');
     artikel.gebruikerId = this.gebruikerService.huidigeGebruiker.id;
-    delete artikel.bijlage; // TODO: kijken of ik dit gewoon uit de interface kan halen.
+    delete artikel.bijlage; // TODO: kijken of dit inderdaad goed gegaan is.
     console.log(artikel);
     const artikelPromise = this.httpClient.post<Artikel>(this.url, artikel).toPromise();
     artikelPromise.then(response => {

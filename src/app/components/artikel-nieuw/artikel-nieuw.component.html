@@ -54,7 +54,7 @@
       <li>Bijlage 1</li>
       <li>
         <input type="file" id="artikelBijlage" formControlName="bijlage" (change)="verwerkBijlage($event.target.files)">
-        <span class="formValidationError">{{bijlageCheckBericht}}</span>
+        <span class="formValidationError">{{bijlageValidatieBericht}}</span>
       </li>
     </ul>
     <button class="submitButton" (click)="aanbiedenArtikel()">Artikel plaatsen</button>
