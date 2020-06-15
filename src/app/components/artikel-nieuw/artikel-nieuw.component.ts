@@ -81,32 +81,20 @@ export class ArtikelNieuwComponent implements OnInit {
 
   checkBijlage(files: any) {
 
-    const grootteCheck = this.bijlageService.checkBestandsGrootte(files);
-    if (!grootteCheck) {
-      this.setBijlageValidatieBericht('Dit bestand is te groot (max. 10 mb).');
-      this.artikelForm.controls.bijlage.reset();
-    }
-
     const checkBestandsType = this.bijlageService.checkBestandsType(files);
     if (!checkBestandsType) {
       this.setBijlageValidatieBericht('Dit type bestand wordt niet ondersteund, u mag alleen foto\'s, audio- en videobestanden uploaden.');
       this.artikelForm.controls.bijlage.reset();
+      return false;
     }
 
-   /* const type = files.item(0).type;
-    const size = files.item(0).size;
-    if (type.includes('image') || type.includes('video') || type.includes('audio')) {
-      if (size <= this.BIJLAGE_MAX_SIZE) {
-        this.setCheckingBijlageBericht(undefined);
-        return true;
-      } else {
-        this.setCheckingBijlageBericht('Het bestand mag maximaal 10mb groot zijn.');
-        this.artikelForm.controls.bijlage.reset();
-      }
-    } else {
-      this.setCheckingBijlageBericht('Dit type bestand wordt niet ondersteund, u mag alleen foto\'s, audio- en videobestanden uploaden.');
+    const grootteCheck = this.bijlageService.checkBestandsGrootte(files);
+    if (!grootteCheck) {
+      this.setBijlageValidatieBericht('Dit bestand is te groot (max. 10 mb).');
       this.artikelForm.controls.bijlage.reset();
-    }*/
+      return false;
+
+    }
     return true;
   }
 
