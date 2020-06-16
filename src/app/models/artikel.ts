@@ -5,7 +5,7 @@ export interface Artikel {
   id: number;
   soort: ArtikelSoort;
   naam: string;
-  prijs: number;
+  prijs: string;
   categorie: Categorie;
   omschrijving: string;
   bezorgAfhalenThuis: boolean;

@@ -54,7 +54,7 @@ export class RegistrerenFormComponent implements OnInit {
     }
   }
 
-  registreerGebruiker() { // FIXME: gaat eerst naar succes en pas later naar error als het misgaat...
+  registreerGebruiker() {
     this.registrerenGebruikerService.registreerGebruiker(this.registerForm.value).
     subscribe(gebruiker => {
         this.router.navigate(['/registreren/succes']);

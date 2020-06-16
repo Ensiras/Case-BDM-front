@@ -13,10 +13,12 @@ export class ArtikelService {
 
   url = 'http://localhost:9080/artikelen/nieuw';
 
+  // TODO: deze bende refactoren
   aanbiedenArtikel(artikel: Artikel, bijlage: any) {
     console.log('Artikel received!');
     artikel.gebruikerId = this.gebruikerService.huidigeGebruiker.id;
-    delete artikel.bijlage; // TODO: kijken of dit inderdaad goed gegaan is.
+    artikel.prijs = artikel.prijs.replace(',', '.');
+    delete artikel.bijlage;
     console.log(artikel);
     const artikelPromise = this.httpClient.post<Artikel>(this.url, artikel).toPromise();
     artikelPromise.then(response => {

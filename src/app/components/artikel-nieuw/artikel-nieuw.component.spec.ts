@@ -55,6 +55,7 @@ describe('ArtikelNieuwComponent', () => {
     expect(component.artikelForm.controls.bezorgAfhalenThuis).toBeFalsy();
   });
 
+  // FIXME: bestand.item is not a function?
   it('when bijlage is added should check its type and accept it if it is supported', () => {
     const image = {name: 'test.jpg', type: 'image', size: 1};
     const video = {name: 'test.jpg', type: 'video', size: 1};
@@ -92,6 +93,15 @@ describe('ArtikelNieuwComponent', () => {
     const resultImage = component.checkBijlage(image);
 
     expect(resultImage).toBeFalse();
+  });
+
+  it('when artikelsoort is product form should be invalid if no bezorgwijzen are checked', () => {
+    const controls = component.artikelForm.controls;
+    controls.soort.setValue('Product');
+    controls.naam.setValue('Testproduct');
+    controls.prijs.setValue('10');
+    controls.categorie.setValue('Een categorie');
+    expect(component.artikelForm.invalid).toBeTrue();
   });
 
 });

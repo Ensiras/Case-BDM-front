@@ -7,6 +7,8 @@ import {ArtikelService} from '../../services/artikel.service';
 import {Artikel} from '../../models/artikel';
 import {Observable, of} from 'rxjs';
 import {BijlageService} from '../../services/bijlage.service';
+import {validateBedrag} from '../../validators/bedrag-validator';
+import {validateBezorgwijzen} from '../../validators/artikel-bezorgwijze-validator';
 
 @Component({
   selector: 'app-artikel-nieuw',
@@ -19,7 +21,7 @@ export class ArtikelNieuwComponent implements OnInit {
     {
       soort: new FormControl('', Validators.required),
       naam: new FormControl('', Validators.required),
-      prijs: new FormControl('', Validators.required),
+      prijs: new FormControl('', [Validators.required, validateBedrag]),
       categorie: new FormControl('', Validators.required),
       omschrijving: new FormControl(),
       bijlage: new FormControl()
@@ -45,7 +47,6 @@ export class ArtikelNieuwComponent implements OnInit {
       this.bezorgwijzenGebruiker = this.gebruikerService.getBezorgwijzen();
       this.addFormControls();
       this.categorieen = this.categorieService.getProductCategorieen();
-
     } else {
       this.showBezorgwijzen = false;
       this.removeFormControls(this.bezorgwijzenGebruiker);
@@ -64,12 +65,19 @@ export class ArtikelNieuwComponent implements OnInit {
     for (const bezorgwijze of this.bezorgwijzenGebruiker) {
       this.artikelForm.addControl(bezorgwijze.attributeName, new FormControl(''));
     }
+    this.artikelForm.setValidators(validateBezorgwijzen);
+    this.artikelForm.updateValueAndValidity();
   }
 
   private removeFormControls(bezorgwijzenGebruiker: any) {
+    if (!bezorgwijzenGebruiker) {
+      return false;
+    }
     for (const bezorgwijze of bezorgwijzenGebruiker) {
       this.artikelForm.removeControl(bezorgwijze.attributeName);
     }
+    this.artikelForm.clearValidators();
+    this.artikelForm.updateValueAndValidity();
   }
 
   verwerkBijlage(bijlage: any) {
@@ -80,7 +88,6 @@ export class ArtikelNieuwComponent implements OnInit {
   }
 
   checkBijlage(files: any) {
-
     const checkBestandsType = this.bijlageService.checkBestandsType(files);
     if (!checkBestandsType) {
       this.setBijlageValidatieBericht('Dit type bestand wordt niet ondersteund, u mag alleen foto\'s, audio- en videobestanden uploaden.');

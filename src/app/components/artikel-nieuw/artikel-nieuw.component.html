@@ -3,16 +3,16 @@
   <form [formGroup]="artikelForm" id="nieuwArtikelForm">
     <ul>
       <li>
-      <label class="formLabelHead" for="artikelSoort">Artikel soort</label>
+      <label class="formLabelHead" for="artikelSoort">Soort</label>
       </li>
       <li>
         <select class="userInput" id="artikelSoort" formControlName="soort" (change)="setFormFields()">
-          <option value="Product">Product</option>
           <option value="Dienst">Dienst</option>
+          <option value="Product">Product</option>
         </select>
       </li>
       <li>
-      <label class="formLabelHead" for="artikelNaam">Artikel naam</label>
+      <label class="formLabelHead" for="artikelNaam">Naam</label>
       </li>
       <li>
         <input class="userInput" type="text" id="artikelNaam" formControlName="naam">
@@ -21,7 +21,7 @@
       <label class="formLabelHead" for="artikelPrijs">Prijs</label>
       </li>
       <li>
-        <input class="userInput" type="number" id="artikelPrijs" formControlName="prijs" min="1">
+        <input class="userInput" type="text" id="artikelPrijs" formControlName="prijs" min="1">
       </li>
       <li>
       <label class="formLabelHead" for="artikelCategorie">Categorie</label>
@@ -42,6 +42,8 @@
     <div *ngIf="showBezorgwijzen">
       <p class="formLabelHead">Bezorgwijzen</p>
       <p>Kies hier welke bezorgwijzen u voor dit artikel wilt ondersteunen.</p>
+      <p *ngIf="artikelForm.errors?.invalidBezorgwijzen">Bij het aanbieden van een product moet u tenminste een
+      bezorgwijze ondersteunen</p>
       <ul>
         <li *ngFor="let bezorgwijze of bezorgwijzenGebruiker">
           <input type="checkbox" [id]="bezorgwijze.attributeName" [formControlName]="bezorgwijze.attributeName">
