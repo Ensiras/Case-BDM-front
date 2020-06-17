@@ -12,9 +12,8 @@
         <span class="formValidationError"
               *ngIf="registerForm.controls.email.errors?.required
               && registerForm.controls.email.touched">Dit veld is verplicht.</span>
-        <span class="formValidationError" *ngIf="registerForm.controls.email.invalid
-        && registerForm.controls.email.touched
-        && registerForm.controls.email.errors?.invalidEmail">Dit is geen geldig e-mailadres.</span>
+        <span class="formValidationError" *ngIf="registerForm.controls.email.touched
+        && registerForm.controls.email.errors?.inValidEmail">Dit is geen geldig e-mailadres.</span>
         <span class="formValidationError"
               *ngIf="registerForm.controls.email.errors?.maxlength
               && registerForm.controls.email.touched">Dit veld max maximaal 100 tekens bevatten.</span>
