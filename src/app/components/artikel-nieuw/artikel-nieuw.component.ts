@@ -20,7 +20,7 @@ export class ArtikelNieuwComponent implements OnInit {
   artikelForm = new FormGroup(
     {
       soort: new FormControl('', Validators.required),
-      naam: new FormControl('', Validators.required),
+      naam: new FormControl('', [Validators.required, Validators.maxLength(100)]),
       prijs: new FormControl('', [Validators.required, validateBedrag]),
       categorie: new FormControl('', Validators.required),
       omschrijving: new FormControl(),

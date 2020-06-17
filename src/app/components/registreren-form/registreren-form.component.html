@@ -14,7 +14,10 @@
               && registerForm.controls.email.touched">Dit veld is verplicht.</span>
         <span class="formValidationError" *ngIf="registerForm.controls.email.invalid
         && registerForm.controls.email.touched
-        && !registerForm.controls.email.errors?.required">Dit is geen geldig e-mailadres.</span>
+        && registerForm.controls.email.errors?.invalidEmail">Dit is geen geldig e-mailadres.</span>
+        <span class="formValidationError"
+              *ngIf="registerForm.controls.email.errors?.maxlength
+              && registerForm.controls.email.touched">Dit veld max maximaal 100 tekens bevatten.</span>
       </li>
     </ul>
 
@@ -51,6 +54,9 @@
         <span class="formValidationError"
               *ngIf="registerForm.controls.straat.errors?.required
               && registerForm.controls.straat.touched">Dit veld is verplicht.</span>
+        <span class="formValidationError"
+              *ngIf="registerForm.controls.straat.errors?.maxlength
+              && registerForm.controls.straat.touched">Dit veld max maximaal 100 tekens bevatten.</span>
       </li>
       <li>
         <label class="formLabelHead" for="huisnummer">Huisnummer: </label>
@@ -60,6 +66,9 @@
         <span class="formValidationError"
               *ngIf="registerForm.controls.huisnummer.errors?.required
               && registerForm.controls.huisnummer.touched">Dit veld is verplicht.</span>
+        <span class="formValidationError"
+              *ngIf="registerForm.controls.huisnummer.errors?.maxlength
+              && registerForm.controls.huisnummer.touched">Dit veld max maximaal 100 tekens bevatten.</span>
       </li>
       <li>
         <label class="formLabelHead" for="postcode">Postcode: </label>
@@ -70,9 +79,9 @@
               *ngIf="registerForm.controls.postcode.errors?.required
               && registerForm.controls.postcode.touched">Dit veld is verplicht.</span>
         <span class="formValidationError"
-              *ngIf="registerForm.controls.postcode?.invalid
+              *ngIf="registerForm.controls.postcode.errors?.invalidPostcode
               && registerForm.controls.postcode.touched
-              && !registerForm.controls.postcode.errors?.required">Dit is geen geldige postcode.</span>
+              && !registerForm.controls.postcode.errors?.required ">Dit is geen geldige postcode.</span>
       </li>
       <li>
         <label class="formLabelHead" for="stad">Stad: </label>
@@ -82,6 +91,9 @@
         <span class="formValidationError"
               *ngIf="registerForm.controls.stad.errors?.required
               && registerForm.controls.stad.touched">Dit veld is verplicht.</span>
+        <span class="formValidationError"
+              *ngIf="registerForm.controls.stad.errors?.maxlength
+              && registerForm.controls.stad.touched">Dit veld max maximaal 100 tekens bevatten.</span>
       </li>
     </ul>
 

@@ -5,6 +5,7 @@ import {GebruikerService} from '../../services/gebruiker.service';
 import {CategorieService} from '../../services/categorie.service';
 import {ArtikelService} from '../../services/artikel.service';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {Router} from '@angular/router';
 
 describe('ArtikelNieuwComponent', () => {
   let component: ArtikelNieuwComponent;
@@ -55,7 +56,6 @@ describe('ArtikelNieuwComponent', () => {
     expect(component.artikelForm.controls.bezorgAfhalenThuis).toBeFalsy();
   });
 
-  // FIXME: bestand.item is not a function?
   it('when bijlage is added should check its type and accept it if it is supported', () => {
     const image = {name: 'test.jpg', type: 'image', size: 1};
     const video = {name: 'test.jpg', type: 'video', size: 1};

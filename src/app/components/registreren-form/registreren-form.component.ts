@@ -18,7 +18,7 @@ export class RegistrerenFormComponent implements OnInit {
 
   registerForm = new FormGroup(
     {
-      email: new FormControl('', [Validators.required, validateEmail]),
+      email: new FormControl('', [Validators.required, validateEmail, Validators.maxLength(100)]),
       bezorgAfhalenThuis: new FormControl(),
       bezorgAfhalenMagazijn: new FormControl(),
       bezorgVersturenVooruit: new FormControl(),
@@ -70,9 +70,9 @@ export class RegistrerenFormComponent implements OnInit {
     for (const key of adresKeys) {
       const adresControl = this.registerForm.get(key);
       if (key === 'postcode') { // postcode is special because it needs 2 validators
-        adresControl.setValidators([Validators.required, validatePostcode]);
+        adresControl.setValidators([Validators.required, Validators.maxLength(100), validatePostcode]);
       } else {
-        adresControl.setValidators(Validators.required);
+        adresControl.setValidators([Validators.required, Validators.maxLength(100)]);
       }
       adresControl.updateValueAndValidity();
     }

@@ -10,18 +10,34 @@
           <option value="Dienst">Dienst</option>
           <option value="Product">Product</option>
         </select>
+        <span class="formValidationError"
+              *ngIf="artikelForm.controls.soort.errors?.required
+              && artikelForm.controls.soort.touched">Dit veld is verplicht.</span>
       </li>
       <li>
         <label class="formLabelHead" for="artikelNaam">Naam</label>
       </li>
       <li>
         <input class="userInput" type="text" id="artikelNaam" formControlName="naam">
+        <span class="formValidationError"
+              *ngIf="artikelForm.controls.naam.errors?.required
+              && artikelForm.controls.naam.touched">Dit veld is verplicht.</span>
+        <span class="formValidationError"
+              *ngIf="artikelForm.controls.naam.errors?.maxlength
+              && artikelForm.controls.naam.touched">Dit veld max maximaal 100 tekens bevatten.</span>
       </li>
       <li>
         <label class="formLabelHead" for="artikelPrijs">Prijs</label>
       </li>
       <li>
         <input class="userInput" type="text" id="artikelPrijs" formControlName="prijs" min="1">
+        <span class="formValidationError"
+              *ngIf="artikelForm.controls.prijs.errors?.required
+              && artikelForm.controls.prijs.touched">Dit veld is verplicht.</span>
+        <span class="formValidationError"
+              *ngIf="artikelForm.controls.prijs.errors?.inValidBedrag
+              && artikelForm.controls.prijs.touched
+              && !artikelForm.controls.prijs.errors?.required">Dit is geen geldig bedrag.</span>
       </li>
       <li>
         <label class="formLabelHead" for="artikelCategorie">Categorie</label>
@@ -31,6 +47,9 @@
           <option value="" selected disabled hidden>Maak een keuze</option>
           <option *ngFor="let categorie of categorieen">{{categorie.categorieNaam}}</option>
         </select>
+        <span class="formValidationError"
+              *ngIf="artikelForm.controls.categorie.errors?.required
+              && artikelForm.controls.categorie.touched">Dit veld is verplicht.</span>
       </li>
     </ul>
     <div *ngIf="showBezorgwijzen">
