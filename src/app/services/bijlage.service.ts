@@ -24,7 +24,6 @@ export class BijlageService {
     return type.includes('image') || type.includes('video') || type.includes('audio');
   }
 
-
   public verstuurBijlage(bijlage: any, artikelId: any) {
     const data = bijlage.item(0);
     const type = bijlage.item(0).type;

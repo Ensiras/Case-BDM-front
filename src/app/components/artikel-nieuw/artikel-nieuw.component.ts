@@ -40,24 +40,32 @@ export class ArtikelNieuwComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  setFormFields() {
-    if (this.artikelForm.controls.soort.value === 'Product') {
-      this.showBezorgwijzen = true;
-      this.bezorgwijzenGebruiker = this.gebruikerService.getBezorgwijzen();
-      this.addFormControls();
-      this.categorieen = this.categorieService.getProductCategorieen();
-    } else {
-      this.showBezorgwijzen = false;
-      this.removeFormControls(this.bezorgwijzenGebruiker);
-      this.bezorgwijzenGebruiker = undefined;
-      this.categorieen = this.categorieService.getDienstCategorieen();
-    }
-  }
-
   aanbiedenArtikel() {
     const artikel: Artikel = this.artikelForm.value;
     this.artikelService.aanbiedenArtikel(artikel, this.bijlage);
     console.log(this.artikelForm.value);
+  }
+
+  setFormFields() {
+    if (this.artikelForm.controls.soort.value === 'Product') {
+      this.setFormToProductForm();
+    } else {
+      this.setFormToDienstForm();
+    }
+  }
+
+  private setFormToDienstForm() {
+    this.showBezorgwijzen = false;
+    this.removeFormControls(this.bezorgwijzenGebruiker);
+    this.bezorgwijzenGebruiker = undefined;
+    this.categorieen = this.categorieService.getDienstCategorieen();
+  }
+
+  private setFormToProductForm() {
+    this.showBezorgwijzen = true;
+    this.bezorgwijzenGebruiker = this.gebruikerService.getBezorgwijzen();
+    this.addFormControls();
+    this.categorieen = this.categorieService.getProductCategorieen();
   }
 
   private addFormControls() {
