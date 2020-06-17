@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Gebruiker} from '../models/gebruiker';
+import {Bezorgwijze} from '../models/bezorgwijze';
 
 @Injectable({
   providedIn: 'root'
@@ -35,7 +36,7 @@ export class GebruikerService {
     if (!this.huidigeGebruiker) {
       this.login(); // For testing purposes, force login if not yet done
     }
-    const bezorgwijzen: {displayName: string, attributeName: string}[] = [];
+    const bezorgwijzen: Bezorgwijze[] = [];
     if (this.huidigeGebruiker.bezorgAfhalenThuis) {
       bezorgwijzen.push({displayName: 'Afhalen thuis', attributeName: 'bezorgAfhalenThuis'});
     }

@@ -8,6 +8,7 @@ import {Artikel} from '../../models/artikel';
 import {BijlageService} from '../../services/bijlage.service';
 import {validateBedrag} from '../../validators/bedrag-validator';
 import {validateBezorgwijzen} from '../../validators/artikel-bezorgwijze-validator';
+import {Bezorgwijze} from '../../models/bezorgwijze';
 
 @Component({
   selector: 'app-artikel-nieuw',
@@ -25,6 +26,7 @@ export class ArtikelNieuwComponent implements OnInit {
       omschrijving: new FormControl(),
       bijlage: new FormControl()
     });
+
   categorieen: Categorie[];
   showBezorgwijzen = false;
   bezorgwijzenGebruiker;
@@ -76,7 +78,7 @@ export class ArtikelNieuwComponent implements OnInit {
     this.artikelForm.updateValueAndValidity();
   }
 
-  private removeFormControls(bezorgwijzenGebruiker: any) {
+  private removeFormControls(bezorgwijzenGebruiker: Bezorgwijze[]) {
     if (!bezorgwijzenGebruiker) {
       return false;
     }

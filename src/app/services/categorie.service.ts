@@ -7,7 +7,8 @@ import {ArtikelSoort} from '../models/artikel-soort.enum';
 })
 export class CategorieService {
 
-  constructor() { }
+  constructor() {
+  }
 
   categorieen: Categorie[];
 
@@ -35,37 +36,60 @@ export class CategorieService {
   private getCategorieen() {
     const productCategorie1: Categorie =
       {
-        categorieNaam: 'Sport',
+        categorieNaam: 'Boeken',
         categorieSoort: ArtikelSoort.Product,
-        categorieOmschrijving: 'Alle sportartikelen'
+        categorieOmschrijving: 'Boeken enzo.'
       };
 
     const productCategorie2: Categorie =
-      {
-        categorieNaam: 'Muziek',
-        categorieSoort: ArtikelSoort.Product,
-        categorieOmschrijving: 'CD\'s, LP\'s, etc.'
-      };
-
-    const productCategorie3: Categorie =
       {
         categorieNaam: 'Elektronica',
         categorieSoort: ArtikelSoort.Product,
         categorieOmschrijving: 'TV\'s, computers, laptops en dergelijke'
       };
 
-    const dienstCategorie1: Categorie =
+    const productCategorie3: Categorie =
       {
-        categorieNaam: 'Coaching',
-        categorieSoort: ArtikelSoort.Dienst,
-        categorieOmschrijving: 'Lifestyle, carrière, sport, enz.'};
+        categorieNaam: 'Muziek',
+        categorieSoort: ArtikelSoort.Product,
+        categorieOmschrijving: 'CD\'s, LP\'s, etc.'
+      };
+
+    const productCategorie4: Categorie =
+      {
+        categorieNaam: 'Sport',
+        categorieSoort: ArtikelSoort.Product,
+        categorieOmschrijving: 'Alle sportartikelen'
+      };
+
+    const dienstCategorie1: Categorie = {
+      categorieNaam: 'Bijles',
+      categorieSoort: ArtikelSoort.Dienst,
+      categorieOmschrijving: 'Bijles nodig?'
+    };
 
     const dienstCategorie2: Categorie =
       {
+        categorieNaam: 'Coaching',
+        categorieSoort: ArtikelSoort.Dienst,
+        categorieOmschrijving: 'Lifestyle, carrière, sport, enz.'
+      };
+
+    const dienstCategorie3: Categorie = {
+      categorieNaam: 'Klussen',
+      categorieSoort: ArtikelSoort.Dienst,
+      categorieOmschrijving: 'Kleine klusjes rond het huis, enz.'
+    };
+
+    const dienstCategorie4: Categorie =
+      {
         categorieNaam: 'Vertalen',
         categorieSoort: ArtikelSoort.Dienst,
-        categorieOmschrijving: 'Iets laten vertalen, klik hier!'};
+        categorieOmschrijving: 'Iets laten vertalen, klik hier!'
+      };
 
-    this.categorieen = [productCategorie1, productCategorie2, productCategorie3, dienstCategorie1, dienstCategorie2];
+    this.categorieen = [productCategorie1, productCategorie2, productCategorie3, productCategorie4,
+      dienstCategorie1, dienstCategorie2, dienstCategorie3, dienstCategorie4];
+    this.categorieen = this.categorieen.sort();
   }
 }
