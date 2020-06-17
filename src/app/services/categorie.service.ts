@@ -16,6 +16,11 @@ export class CategorieService {
     return this.filterCategorieen(ArtikelSoort.Product);
   }
 
+  getDienstCategorieen() {
+    this.getCategorieen();
+    return this.filterCategorieen(ArtikelSoort.Dienst);
+  }
+
   private filterCategorieen(categorieSoort: ArtikelSoort) {
     const categorieenFiltered: Categorie[] = [];
     for (const categorie of this.categorieen) {
@@ -24,10 +29,6 @@ export class CategorieService {
       }
     }
     return categorieenFiltered;
-  }
-
-  getDienstCategorieen() {
-    return this.filterCategorieen(ArtikelSoort.Dienst);
   }
 
   // Temporary implementation to make available categories without calling backend

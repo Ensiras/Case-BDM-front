@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Artikel} from '../models/artikel';
 import {GebruikerService} from './gebruiker.service';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,9 @@ import {GebruikerService} from './gebruiker.service';
 export class ArtikelService {
 
   constructor(private httpClient: HttpClient,
-              private gebruikerService: GebruikerService) { }
+              private gebruikerService: GebruikerService,
+              private router: Router) {
+  }
 
   url = 'http://localhost:9080/artikelen/nieuw';
 
@@ -21,10 +24,16 @@ export class ArtikelService {
     delete artikel.bijlage;
     console.log(artikel);
     const artikelPromise = this.httpClient.post<Artikel>(this.url, artikel).toPromise();
-    artikelPromise.then(response => {
-      const artikelId = response.id;
-      this.verstuurBijlage(bijlage, artikelId);
-    }, error => console.log(error));
+    if (bijlage) {
+      artikelPromise.then(response => {
+        const artikelId = response.id;
+        this.verstuurBijlage(bijlage, artikelId);
+      }, error => console.log(error));
+    } else {
+      artikelPromise.then(() => {
+        this.router.navigate(['artikelen/nieuw/succes']);
+      }, error => console.log(error));
+    }
   }
 
   private verstuurBijlage(bijlage: any, artikelId: any) {
@@ -37,6 +46,10 @@ export class ArtikelService {
     params = params.append('bijlagenaam', naam);
     params = params.append('bijlagetype', type);
     params = params.append('artikelid', artikelId);
-    this.httpClient.post(url, data, {params, responseType: 'text'}).subscribe();
+    this.httpClient.post(url, data, {params, responseType: 'text'})
+      .subscribe(
+        resp => this.router.navigate(['artikelen/nieuw/succes']),
+        error => this.router.navigate(['artikelen/nieuw/error'])
+      );
   }
 }

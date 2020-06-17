@@ -60,7 +60,6 @@ export class RegistrerenFormComponent implements OnInit {
         this.router.navigate(['/registreren/succes']);
       },
       error => {
-      console.log('Something went wrong.');
       this.router.navigate(['/registreren/error']);
     });
   }

@@ -13,6 +13,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HomeComponent } from './components/home/home.component';
 import { RegistrerenFailComponent } from './components/registreren-fail/registreren-fail.component';
 import { ArtikelNieuwComponent } from './components/artikel-nieuw/artikel-nieuw.component';
+import { ArtikelNieuwSuccesComponent } from './components/artikel-nieuw-succes/artikel-nieuw-succes.component';
+import { ArtikelNieuwFailComponent } from './components/artikel-nieuw-fail/artikel-nieuw-fail.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { ArtikelNieuwComponent } from './components/artikel-nieuw/artikel-nieuw.
     NotFoundComponent,
     HomeComponent,
     RegistrerenFailComponent,
-    ArtikelNieuwComponent
+    ArtikelNieuwComponent,
+    ArtikelNieuwSuccesComponent,
+    ArtikelNieuwFailComponent
   ],
   imports: [
     BrowserModule,

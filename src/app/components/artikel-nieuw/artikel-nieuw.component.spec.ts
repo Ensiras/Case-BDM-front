@@ -95,9 +95,20 @@ describe('ArtikelNieuwComponent', () => {
     expect(resultImage).toBeFalse();
   });
 
-  it('when artikelsoort is product form should be invalid if no bezorgwijzen are checked', () => {
+  it('when artikelsoort is product form should be invalid if no bezorgwijze is checked', () => {
     const controls = component.artikelForm.controls;
     controls.soort.setValue('Product');
+    component.setFormFields();
+    controls.naam.setValue('Testproduct');
+    controls.prijs.setValue('10');
+    controls.categorie.setValue('Een categorie');
+    expect(component.artikelForm.invalid).toBeTrue();
+  });
+
+  it('when artikelSoort is product form should be valid if any bezorgwijze is checked', () => {
+    const controls = component.artikelForm.controls;
+    controls.soort.setValue('Product');
+    component.setFormFields();
     controls.naam.setValue('Testproduct');
     controls.prijs.setValue('10');
     controls.categorie.setValue('Een categorie');

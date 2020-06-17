@@ -5,6 +5,8 @@ import {NotFoundComponent} from './components/not-found/not-found.component';
 import {HomeComponent} from './components/home/home.component';
 import {RegistrerenFailComponent} from './components/registreren-fail/registreren-fail.component';
 import {ArtikelNieuwComponent} from './components/artikel-nieuw/artikel-nieuw.component';
+import {ArtikelNieuwSuccesComponent} from './components/artikel-nieuw-succes/artikel-nieuw-succes.component';
+import {ArtikelNieuwFailComponent} from './components/artikel-nieuw-fail/artikel-nieuw-fail.component';
 
 export const routes: Routes = [
   {path: '',
@@ -14,5 +16,7 @@ export const routes: Routes = [
   {path: 'registreren/succes', component: RegistrerenSuccesComponent},
   {path: 'registreren/error', component: RegistrerenFailComponent},
   {path: 'artikelen/nieuw', component: ArtikelNieuwComponent},
+  {path: 'artikelen/nieuw/succes', component: ArtikelNieuwSuccesComponent},
+  {path: 'artikelen/nieuw/error', component: ArtikelNieuwFailComponent},
   {path: '**', component: NotFoundComponent}
 ];

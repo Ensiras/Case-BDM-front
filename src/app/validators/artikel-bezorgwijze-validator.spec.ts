@@ -2,11 +2,15 @@ import {validateBezorgwijzen} from './artikel-bezorgwijze-validator';
 import {FormControl, FormGroup} from '@angular/forms';
 
 describe('ArtikelBezorgwijzeValidator', () => {
-  const formGroup = new FormGroup({
-    bezorgAfhalenThuis: new FormControl(),
-    bezorgAfhalenMagazijn: new FormControl(),
-    bezorgVersturenVooruit: new FormControl(),
-    bezorgVersturenRembours: new FormControl()
+  let formGroup;
+
+  beforeEach(() => {
+    formGroup = new FormGroup({
+      bezorgAfhalenThuis: new FormControl(),
+      bezorgAfhalenMagazijn: new FormControl(),
+      bezorgVersturenVooruit: new FormControl(),
+      bezorgVersturenRembours: new FormControl()
+    });
   });
 
   it('when any bezorgwijze in FormGroup is checked should return null', () => {
@@ -18,7 +22,7 @@ describe('ArtikelBezorgwijzeValidator', () => {
   it('when no bezorgwijze in formGroup is checked should return validation error', () => {
     // None of the controls are set to anything
     const result = validateBezorgwijzen(formGroup);
-    expect(result.inValidBezorgwijzen).toEqual(true);
+    expect(result.invalidBezorgwijzen).toBeTrue();
   });
 
   it('when not all controls are defined should still validate correctly', () => {
@@ -27,6 +31,6 @@ describe('ArtikelBezorgwijzeValidator', () => {
       bezorgVersturenRembours: new FormControl()
     });
     const resultInvalid = validateBezorgwijzen(formGroupIncomplete);
-    expect(resultInvalid.inValidBezorgwijzen).toBeTrue();
+    expect(resultInvalid.invalidBezorgwijzen).toBeTrue();
   });
 });

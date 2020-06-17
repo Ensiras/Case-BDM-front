@@ -5,7 +5,6 @@ import {CategorieService} from '../../services/categorie.service';
 import {Categorie} from '../../models/categorie';
 import {ArtikelService} from '../../services/artikel.service';
 import {Artikel} from '../../models/artikel';
-import {Observable, of} from 'rxjs';
 import {BijlageService} from '../../services/bijlage.service';
 import {validateBedrag} from '../../validators/bedrag-validator';
 import {validateBezorgwijzen} from '../../validators/artikel-bezorgwijze-validator';
@@ -102,6 +101,7 @@ export class ArtikelNieuwComponent implements OnInit {
       return false;
 
     }
+    this.setBijlageValidatieBericht(null);
     return true;
   }
 

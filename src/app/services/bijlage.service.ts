@@ -20,4 +20,6 @@ export class BijlageService {
     return type.includes('image') || type.includes('video') || type.includes('audio');
   }
 
+
+
 }

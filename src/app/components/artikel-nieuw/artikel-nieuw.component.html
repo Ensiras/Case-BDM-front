@@ -3,7 +3,7 @@
   <form [formGroup]="artikelForm" id="nieuwArtikelForm">
     <ul>
       <li>
-      <label class="formLabelHead" for="artikelSoort">Soort</label>
+        <label class="formLabelHead" for="artikelSoort">Soort</label>
       </li>
       <li>
         <select class="userInput" id="artikelSoort" formControlName="soort" (change)="setFormFields()">
@@ -12,38 +12,32 @@
         </select>
       </li>
       <li>
-      <label class="formLabelHead" for="artikelNaam">Naam</label>
+        <label class="formLabelHead" for="artikelNaam">Naam</label>
       </li>
       <li>
         <input class="userInput" type="text" id="artikelNaam" formControlName="naam">
       </li>
       <li>
-      <label class="formLabelHead" for="artikelPrijs">Prijs</label>
+        <label class="formLabelHead" for="artikelPrijs">Prijs</label>
       </li>
       <li>
         <input class="userInput" type="text" id="artikelPrijs" formControlName="prijs" min="1">
       </li>
       <li>
-      <label class="formLabelHead" for="artikelCategorie">Categorie</label>
+        <label class="formLabelHead" for="artikelCategorie">Categorie</label>
       </li>
       <li>
-        <select class="userInput" id="artikelCategorie" formControlName="categorie" >
+        <select class="userInput" id="artikelCategorie" formControlName="categorie">
           <option value="" selected disabled hidden>Maak een keuze</option>
           <option *ngFor="let categorie of categorieen">{{categorie.categorieNaam}}</option>
         </select>
-      </li>
-      <li>
-      <label class="formLabelHead" for="artikelOmschrijving">Omschrijving (optioneel)</label>
-      </li>
-      <li>
-        <input class="userInput" type="text" id="artikelOmschrijving" formControlName="omschrijving">
       </li>
     </ul>
     <div *ngIf="showBezorgwijzen">
       <p class="formLabelHead">Bezorgwijzen</p>
       <p>Kies hier welke bezorgwijzen u voor dit artikel wilt ondersteunen.</p>
-      <p *ngIf="artikelForm.errors?.invalidBezorgwijzen">Bij het aanbieden van een product moet u tenminste een
-      bezorgwijze ondersteunen</p>
+      <p *ngIf="artikelForm.errors?.invalidBezorgwijzen" class="formValidationError">Bij het aanbieden van een product moet u tenminste een
+        bezorgwijze ondersteunen</p>
       <ul>
         <li *ngFor="let bezorgwijze of bezorgwijzenGebruiker">
           <input type="checkbox" [id]="bezorgwijze.attributeName" [formControlName]="bezorgwijze.attributeName">
@@ -51,14 +45,22 @@
         </li>
       </ul>
     </div>
+    <ul>
+      <li>
+        <label class="formLabelHead" for="artikelOmschrijving">Omschrijving (optioneel)</label>
+      </li>
+      <li>
+        <textarea class="userInput" type="text" id="artikelOmschrijving" formControlName="omschrijving"></textarea>
+      </li>
+    </ul>
+
     <p class="formLabelHead">Bijlage (optioneel)</p>
     <ul id="nieuwArtikelBijlagen">
-      <li>Bijlage 1</li>
       <li>
         <input type="file" id="artikelBijlage" formControlName="bijlage" (change)="verwerkBijlage($event.target.files)">
         <span class="formValidationError">{{bijlageValidatieBericht}}</span>
       </li>
     </ul>
-    <button class="submitButton" (click)="aanbiedenArtikel()">Artikel plaatsen</button>
+    <button class="submitButton" [disabled]="artikelForm.invalid" (click)="aanbiedenArtikel()">Artikel plaatsen</button>
   </form>
 </div>
